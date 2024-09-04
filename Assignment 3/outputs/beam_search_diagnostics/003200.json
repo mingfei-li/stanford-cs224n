@@ -1,0 +1,241 @@
+{
+    "example_source": [
+        "▁我还",
+        "澄清",
+        "了",
+        "在该",
+        "会议上",
+        "提出的",
+        "若干",
+        "事项",
+        "。"
+    ],
+    "example_target": [
+        "<s>",
+        "▁i",
+        "▁was",
+        "▁able",
+        "▁to",
+        "▁provide",
+        "▁clarification",
+        "▁on",
+        "▁some",
+        "▁of",
+        "▁the",
+        "▁matters",
+        "▁which",
+        "▁were",
+        "▁raised",
+        "▁at",
+        "▁that",
+        "▁meeting",
+        ".",
+        "</s>"
+    ],
+    "hypotheses": [
+        {
+            "hypothesis": [
+                "▁i",
+                "▁also",
+                "▁also",
+                "▁clarification",
+                "▁on",
+                "▁the",
+                "▁meeting",
+                "▁of",
+                "▁the",
+                "▁conference",
+                "▁on",
+                "▁the",
+                "▁conference",
+                "."
+            ],
+            "score": -14.179117202758789
+        },
+        {
+            "hypothesis": [
+                "▁i",
+                "▁also",
+                "▁also",
+                "▁clarification",
+                "▁on",
+                "▁the",
+                "▁meeting",
+                "▁of",
+                "▁the",
+                "▁conference",
+                "▁on",
+                "▁the",
+                "▁meeting",
+                "."
+            ],
+            "score": -14.51593017578125
+        },
+        {
+            "hypothesis": [
+                "▁i",
+                "▁also",
+                "▁also",
+                "▁clarification",
+                "▁on",
+                "▁the",
+                "▁meeting",
+                "▁of",
+                "▁the",
+                "▁conference",
+                "▁at",
+                "▁the",
+                "▁meeting",
+                "."
+            ],
+            "score": -15.212102890014648
+        },
+        {
+            "hypothesis": [
+                "▁i",
+                "▁also",
+                "▁also",
+                "▁clarification",
+                "▁on",
+                "▁the",
+                "▁meeting",
+                "▁of",
+                "▁the",
+                "▁meeting",
+                "▁at",
+                "▁the",
+                "▁meeting",
+                "."
+            ],
+            "score": -15.270697593688965
+        },
+        {
+            "hypothesis": [
+                "▁i",
+                "▁also",
+                "▁also",
+                "▁clarification",
+                "▁on",
+                "▁the",
+                "▁meeting",
+                "▁of",
+                "▁the",
+                "▁conference",
+                "▁at",
+                "▁the",
+                "▁conference",
+                "."
+            ],
+            "score": -15.39688777923584
+        },
+        {
+            "hypothesis": [
+                "▁i",
+                "▁also",
+                "▁also",
+                "▁clarification",
+                "▁on",
+                "▁a",
+                "▁number",
+                "▁of",
+                "▁questions",
+                "▁on",
+                "▁the",
+                "▁meeting",
+                "▁of",
+                "▁the",
+                "▁conference",
+                "."
+            ],
+            "score": -16.034719467163086
+        },
+        {
+            "hypothesis": [
+                "▁i",
+                "▁also",
+                "▁also",
+                "▁clarification",
+                "▁on",
+                "▁a",
+                "▁number",
+                "▁of",
+                "▁occasions",
+                "▁on",
+                "▁the",
+                "▁meeting",
+                "▁of",
+                "▁the",
+                "▁conference",
+                "."
+            ],
+            "score": -16.229921340942383
+        },
+        {
+            "hypothesis": [
+                "▁i",
+                "▁also",
+                "▁also",
+                "▁clarification",
+                "▁on",
+                "▁the",
+                "▁meeting",
+                "▁of",
+                "▁the",
+                "▁conference",
+                "▁on",
+                "▁the",
+                "▁meeting",
+                "▁of",
+                "▁the",
+                "▁conference",
+                "."
+            ],
+            "score": -16.5749568939209
+        },
+        {
+            "hypothesis": [
+                "▁i",
+                "▁also",
+                "▁also",
+                "▁clarification",
+                "▁on",
+                "▁the",
+                "▁meeting",
+                "▁of",
+                "▁the",
+                "▁meeting",
+                "▁at",
+                "▁the",
+                "▁meeting",
+                "▁of",
+                "▁the",
+                "▁conference",
+                "."
+            ],
+            "score": -16.785194396972656
+        },
+        {
+            "hypothesis": [
+                "▁i",
+                "▁also",
+                "▁also",
+                "▁clarification",
+                "▁on",
+                "▁the",
+                "▁meeting",
+                "▁of",
+                "▁the",
+                "▁conference",
+                "▁at",
+                "▁the",
+                "▁meeting",
+                "▁of",
+                "▁the",
+                "▁conference",
+                "."
+            ],
+            "score": -16.949356079101562
+        }
+    ],
+    "diagnostic_info": "eyJ0IjogIjIwMjQtMDktMDRUMDU6Mjk6NDYuMTA4OTQzIiwgImgiOiAiODliNWY1N2I4N2I0IiwgInUiOiAicm9vdCJ9"
+}
