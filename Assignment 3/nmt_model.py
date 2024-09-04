@@ -369,7 +369,7 @@ class NMT(nn.Module):
         ###     Tanh:
         ###         https://pytorch.org/docs/stable/generated/torch.tanh.html
 
-        alpha_t = nn.functional.softmax(e_t)
+        alpha_t = F.softmax(e_t, dim=-1)
         a_t = torch.bmm(alpha_t.unsqueeze(1), enc_hiddens).squeeze(1)
         U_t = torch.cat((a_t, dec_hidden), dim=-1)
         V_t = self.combined_output_projection(U_t)
