@@ -1,3 +1,4 @@
+import math
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -48,7 +49,9 @@ class BertSelfAttention(nn.Module):
     # - Multiply the attention scores with the value to get back weighted values.
     # - Before returning, concatenate multi-heads to recover the original shape:
     #   [bs, seq_len, num_attention_heads * attention_head_size = hidden_size].
-    attention_scores = query @ torch.transpose(key, -2, -1) / torch.sqrt(Tensor([self.attention_head_size]))
+    
+    key_transposed = torch.transpose(key, -2, -1)
+    attention_scores = query @ key_transposed / math.sqrt(self.attention_head_size)
     normalized_attention_scores = self.dropout(nn.Softmax(dim=-1)(attention_scores + attention_mask))
     output = normalized_attention_scores @ value
     output = torch.transpose(output, 1, 2)
