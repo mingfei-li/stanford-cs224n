@@ -1,0 +1,45 @@
+Training Sentiment Classifier on SST...
+load 8544 data from data/ids-sst-train.csv
+load 1101 data from data/ids-sst-dev.csv
+save the model to sst-classifier.pt
+Epoch 0: train loss :: 1.244, train acc :: 0.589, dev acc :: 0.494
+save the model to sst-classifier.pt
+Epoch 1: train loss :: 0.964, train acc :: 0.713, dev acc :: 0.521
+save the model to sst-classifier.pt
+Epoch 2: train loss :: 0.764, train acc :: 0.832, dev acc :: 0.529
+Epoch 3: train loss :: 0.576, train acc :: 0.903, dev acc :: 0.510
+Epoch 4: train loss :: 0.402, train acc :: 0.906, dev acc :: 0.514
+Epoch 5: train loss :: 0.278, train acc :: 0.940, dev acc :: 0.501
+Epoch 6: train loss :: 0.217, train acc :: 0.946, dev acc :: 0.503
+Epoch 7: train loss :: 0.167, train acc :: 0.965, dev acc :: 0.514
+Epoch 8: train loss :: 0.119, train acc :: 0.979, dev acc :: 0.501
+Epoch 9: train loss :: 0.104, train acc :: 0.962, dev acc :: 0.497
+Evaluating on SST...
+load model from sst-classifier.pt
+load 1101 data from data/ids-sst-dev.csv
+DONE DEV
+DONE Test
+dev acc :: 0.529
+Training Sentiment Classifier on cfimdb...
+load 1707 data from data/ids-cfimdb-train.csv
+load 245 data from data/ids-cfimdb-dev.csv
+save the model to cfimdb-classifier.pt
+Epoch 0: train loss :: 0.629, train acc :: 0.969, dev acc :: 0.939
+save the model to cfimdb-classifier.pt
+Epoch 1: train loss :: 0.106, train acc :: 0.993, dev acc :: 0.963
+Epoch 2: train loss :: 0.055, train acc :: 0.994, dev acc :: 0.943
+Epoch 3: train loss :: 0.034, train acc :: 0.996, dev acc :: 0.947
+Epoch 4: train loss :: 0.029, train acc :: 0.998, dev acc :: 0.963
+Epoch 5: train loss :: 0.013, train acc :: 0.999, dev acc :: 0.959
+Epoch 6: train loss :: 0.018, train acc :: 0.998, dev acc :: 0.959
+Epoch 7: train loss :: 0.025, train acc :: 1.000, dev acc :: 0.959
+save the model to cfimdb-classifier.pt
+Epoch 8: train loss :: 0.006, train acc :: 1.000, dev acc :: 0.967
+save the model to cfimdb-classifier.pt
+Epoch 9: train loss :: 0.002, train acc :: 1.000, dev acc :: 0.971
+Evaluating on cfimdb...
+load model from cfimdb-classifier.pt
+load 245 data from data/ids-cfimdb-dev.csv
+DONE DEV
+DONE Test
+dev acc :: 0.971
