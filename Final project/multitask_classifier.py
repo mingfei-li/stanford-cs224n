@@ -257,7 +257,7 @@ def train_multitask(args):
             para_train_loss += loss.item()
             para_num_batches += 1
 
-        for batch in tqdm(para_train_dataloader, desc=f'train-{epoch}-sts'):
+        for batch in tqdm(sts_train_dataloader, desc=f'train-{epoch}-sts'):
             (b_ids1, b_mask1,
              b_ids2, b_mask2,
              b_labels) = (batch['token_ids_1'], batch['attention_mask_1'],
