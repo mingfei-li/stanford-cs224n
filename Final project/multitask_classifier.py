@@ -138,7 +138,7 @@ class MultitaskBERT(nn.Module):
         y = self.forward(input_ids_2, attention_mask_2)
         z = torch.cat((x, y), dim=1)
 
-        return self.text_similarity_head(x)
+        return self.text_similarity_head(z)
 
 
 
