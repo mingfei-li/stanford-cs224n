@@ -119,19 +119,11 @@ class MultitaskBERT(nn.Module):
         Note that your output should be unnormalized (a logit); it will be passed to the sigmoid function
         during evaluation.
         '''
-        assert input_ids_1.shape == input_ids_2.shape
-        assert attention_mask_1.shape == attention_mask_2.shape
-        assert input_ids_1.shape == attention_mask_1.shape
-        b, _, h = input_ids_1.shape
 
-        input_ids = torch.cat(input_ids_1, input_ids_2, dim=0)
-        attention_mask = torch.cat(attention_mask_1, attention_mask_2, dim=0)
-        x = self.forward(input_ids, attention_mask)
-        x = x.view(2, b, h)
-        x = torch.transpose(x, 0, 1)
-        x = x.view(b, 2 * h)
-        x = self.paraphrase_detection_head(x)
-        return x
+        x = self.forward(input_ids_1, attention_mask_1)
+        y = self.forward(input_ids_2, attention_mask_2)
+        z = torch.cat((x, y), dim=1)
+        return self.paraphrase_detection_head(z)
 
 
 
@@ -142,19 +134,11 @@ class MultitaskBERT(nn.Module):
         Note that your output should be unnormalized (a logit).
         '''
 
-        assert input_ids_1.shape == input_ids_2.shape
-        assert attention_mask_1.shape == attention_mask_2.shape
-        assert input_ids_1.shape == attention_mask_1.shape
-        b, _, h = input_ids_1.shape
+        x = self.forward(input_ids_1, attention_mask_1)
+        y = self.forward(input_ids_2, attention_mask_2)
+        z = torch.cat((x, y), dim=1)
 
-        input_ids = torch.cat(input_ids_1, input_ids_2, dim=0)
-        attention_mask = torch.cat(attention_mask_1, attention_mask_2, dim=0)
-        x = self.forward(input_ids, attention_mask)
-        x = x.view(2, b, h)
-        x = torch.transpose(x, 0, 1)
-        x = x.view(b, 2 * h)
-        x = self.text_similarity_head(x)
-        return x
+        return self.text_similarity_head(x)
 
 
 
@@ -264,11 +248,11 @@ def train_multitask(args):
             b_mask2.to(device)
             b_labels.to(device)
 
-            optimzer.zero_grad()
+            optimizer.zero_grad()
             logits = model.predict_paraphrase(b_ids1, b_mask1, b_ids2, b_mask2)
-            loss = F.binary_cross_entropy_with_logits(logits, b_labels.view(-1))
+            loss = F.binary_cross_entropy_with_logits(logits.view(-1), b_labels.view(-1).float())
             loss.backward()
-            optimzer.step()
+            optimizer.step()
 
             para_train_loss += loss.item()
             para_num_batches += 1
@@ -286,11 +270,11 @@ def train_multitask(args):
             b_mask2.to(device)
             b_labels.to(device)
 
-            optimzer.zero_grad()
+            optimizer.zero_grad()
             logits = model.predict_paraphrase(b_ids1, b_mask1, b_ids2, b_mask2)
-            loss = F.mse_loss(logits, b_labels.view(-1))
+            loss = F.mse_loss(logits.view(-1), b_labels.view(-1).float())
             loss.backward()
-            optimzer.step()
+            optimizer.step()
 
             sts_train_loss += loss.item()
             sts_num_batches += 1
