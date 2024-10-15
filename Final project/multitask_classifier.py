@@ -242,11 +242,11 @@ def train_multitask(args):
                           batch['token_ids_2'], batch['attention_mask_2'],
                           batch['labels'])
             
-            b_ids1.to(device)
-            b_mask1.to(device)
-            b_ids2.to(device)
-            b_mask2.to(device)
-            b_labels.to(device)
+            b_ids1 = b_ids1.to(device)
+            b_mask1 = b_mask1.to(device)
+            b_ids2 = b_ids2.to(device)
+            b_mask2 = b_mask2.to(device)
+            b_labels = b_labels.to(device)
 
             optimizer.zero_grad()
             logits = model.predict_paraphrase(b_ids1, b_mask1, b_ids2, b_mask2)
@@ -264,11 +264,11 @@ def train_multitask(args):
                           batch['token_ids_2'], batch['attention_mask_2'],
                           batch['labels'])
             
-            b_ids1.to(device)
-            b_mask1.to(device)
-            b_ids2.to(device)
-            b_mask2.to(device)
-            b_labels.to(device)
+            b_ids1 = b_ids1.to(device)
+            b_mask1 = b_mask1.to(device)
+            b_ids2 = b_ids2.to(device)
+            b_mask2 = b_mask2.to(device)
+            b_labels = b_labels.to(device)
 
             optimizer.zero_grad()
             logits = model.predict_paraphrase(b_ids1, b_mask1, b_ids2, b_mask2)
