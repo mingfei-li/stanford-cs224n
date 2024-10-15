@@ -212,28 +212,28 @@ def train_multitask(args):
     for epoch in range(args.epochs):
         model.train()
         sst_train_loss = 0
-        sst_num_batches = 0
+        sst_num_batches = 1
         para_train_loss = 0
         para_num_batches = 0
         sts_train_loss = 0
-        sts_num_batches = 0
-        for batch in tqdm(sst_train_dataloader, desc=f'train-{epoch}-sst', disable=TQDM_DISABLE):
-            b_ids, b_mask, b_labels = (batch['token_ids'],
-                                       batch['attention_mask'], batch['labels'])
+        sts_num_batches = 1
+        # for batch in tqdm(sst_train_dataloader, desc=f'train-{epoch}-sst', disable=TQDM_DISABLE):
+        #     b_ids, b_mask, b_labels = (batch['token_ids'],
+        #                                batch['attention_mask'], batch['labels'])
 
-            b_ids = b_ids.to(device)
-            b_mask = b_mask.to(device)
-            b_labels = b_labels.to(device)
+        #     b_ids = b_ids.to(device)
+        #     b_mask = b_mask.to(device)
+        #     b_labels = b_labels.to(device)
 
-            optimizer.zero_grad()
-            logits = model.predict_sentiment(b_ids, b_mask)
-            loss = F.cross_entropy(logits, b_labels.view(-1))
+        #     optimizer.zero_grad()
+        #     logits = model.predict_sentiment(b_ids, b_mask)
+        #     loss = F.cross_entropy(logits, b_labels.view(-1))
 
-            loss.backward()
-            optimizer.step()
+        #     loss.backward()
+        #     optimizer.step()
 
-            sst_train_loss += loss.item()
-            sst_num_batches += 1
+        #     sst_train_loss += loss.item()
+        #     sst_num_batches += 1
 
         for batch in tqdm(para_train_dataloader, desc=f'train-{epoch}-para'):
             (b_ids1, b_mask1,
@@ -257,27 +257,27 @@ def train_multitask(args):
             para_train_loss += loss.item()
             para_num_batches += 1
 
-        for batch in tqdm(sts_train_dataloader, desc=f'train-{epoch}-sts'):
-            (b_ids1, b_mask1,
-             b_ids2, b_mask2,
-             b_labels) = (batch['token_ids_1'], batch['attention_mask_1'],
-                          batch['token_ids_2'], batch['attention_mask_2'],
-                          batch['labels'])
-            
-            b_ids1 = b_ids1.to(device)
-            b_mask1 = b_mask1.to(device)
-            b_ids2 = b_ids2.to(device)
-            b_mask2 = b_mask2.to(device)
-            b_labels = b_labels.to(device)
+        # for batch in tqdm(sts_train_dataloader, desc=f'train-{epoch}-sts'):
+        #     (b_ids1, b_mask1,
+        #      b_ids2, b_mask2,
+        #      b_labels) = (batch['token_ids_1'], batch['attention_mask_1'],
+        #                   batch['token_ids_2'], batch['attention_mask_2'],
+        #                   batch['labels'])
+        #     
+        #     b_ids1 = b_ids1.to(device)
+        #     b_mask1 = b_mask1.to(device)
+        #     b_ids2 = b_ids2.to(device)
+        #     b_mask2 = b_mask2.to(device)
+        #     b_labels = b_labels.to(device)
 
-            optimizer.zero_grad()
-            logits = model.predict_paraphrase(b_ids1, b_mask1, b_ids2, b_mask2)
-            loss = F.mse_loss(logits.view(-1), b_labels.view(-1).float())
-            loss.backward()
-            optimizer.step()
+        #     optimizer.zero_grad()
+        #     logits = model.predict_paraphrase(b_ids1, b_mask1, b_ids2, b_mask2)
+        #     loss = F.mse_loss(logits.view(-1), b_labels.view(-1).float())
+        #     loss.backward()
+        #     optimizer.step()
 
-            sts_train_loss += loss.item()
-            sts_num_batches += 1
+        #     sts_train_loss += loss.item()
+        #     sts_num_batches += 1
 
         sst_train_loss = sst_train_loss / sst_num_batches
         para_train_loss = para_train_loss / para_num_batches
