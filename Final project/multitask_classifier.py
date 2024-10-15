@@ -298,9 +298,9 @@ def train_multitask(args):
             device,
         )
 
-        train_loss = sts_train_loss + para_train_loss + sts_train_loss
-        train_acc = sts_train_acc + para_train_acc + sts_train_corr
-        dev_acc = sts_dev_acc + para_dev_acc + sts_dev_corr
+        train_loss = sst_train_loss + para_train_loss + sts_train_loss
+        train_acc = sst_train_acc + para_train_acc + sts_train_corr
+        dev_acc = sst_dev_acc + para_dev_acc + sts_dev_corr
 
         if dev_acc > best_dev_acc:
             best_dev_acc = dev_acc
