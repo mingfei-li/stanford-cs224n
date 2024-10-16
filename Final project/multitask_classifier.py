@@ -309,7 +309,7 @@ def train_multitask(args):
         print(f"Epoch {epoch}, sst: train loss :: {sst_train_loss :.3f}, train acc :: {sst_train_acc :.3f}, dev acc :: {sst_dev_acc :.3f}")
         print(f"Epoch {epoch}, para: train loss :: {para_train_loss :.3f}, train acc :: {para_train_acc :.3f}, dev acc :: {para_dev_acc :.3f}")
         print(f"Epoch {epoch}, sts: train loss :: {sts_train_loss :.3f}, train corr :: {sts_train_corr :.3f}, dev corr :: {sts_dev_corr :.3f}")
-        print(f"Epoch {epoch}, multi-task: train loss :: {train_loss :.3f}, train corr :: {train_acc :.3f}, dev corr :: {dev_acc :.3f}")
+        print(f"Epoch {epoch}, multi-task: train loss :: {train_loss :.3f}, train acc/corr :: {train_acc :.3f}, dev acc/corr :: {dev_acc :.3f}")
 
 
 def test_multitask(args):
