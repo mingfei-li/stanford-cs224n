@@ -266,6 +266,7 @@ def train_multitask(args):
             model,
             device,
         )
+        print(f"Epoch {epoch}, para from multi task eval: dev acc :: {para_dev_acc :.3f}")
 
         for batch in tqdm(sts_train_dataloader, desc=f'train-{epoch}-sts'):
             (b_ids1, b_mask1,
