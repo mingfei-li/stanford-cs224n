@@ -282,7 +282,7 @@ def train_multitask(args):
             b_labels = b_labels.to(device)
 
             optimizer.zero_grad()
-            logits = model.predict_paraphrase(b_ids1, b_mask1, b_ids2, b_mask2)
+            logits = model.predict_similarity(b_ids1, b_mask1, b_ids2, b_mask2)
             loss = F.mse_loss(logits.view(-1), b_labels.view(-1).float())
             loss.backward()
             optimizer.step()
@@ -313,15 +313,14 @@ def train_multitask(args):
         train_acc = sst_train_acc + para_train_acc + sts_train_corr
         dev_acc = sst_dev_acc + para_dev_acc + sts_dev_corr
 
-        if dev_acc > best_dev_acc:
-            best_dev_acc = dev_acc
-            save_model(model, optimizer, args, config, args.filepath)
-
         print(f"Epoch {epoch}, sst: train loss :: {sst_train_loss :.3f}, train acc :: {sst_train_acc :.3f}, dev acc :: {sst_dev_acc :.3f}")
         print(f"Epoch {epoch}, para: train loss :: {para_train_loss :.3f}, train acc :: {para_train_acc :.3f}, dev acc :: {para_dev_acc :.3f}")
         print(f"Epoch {epoch}, sts: train loss :: {sts_train_loss :.3f}, train corr :: {sts_train_corr :.3f}, dev corr :: {sts_dev_corr :.3f}")
         print(f"Epoch {epoch}, multi-task: train loss :: {train_loss :.3f}, train corr :: {train_acc :.3f}, dev corr :: {dev_acc :.3f}")
 
+        if dev_acc > best_dev_acc:
+            best_dev_acc = dev_acc
+            save_model(model, optimizer, args, config, args.filepath)
 
 def test_multitask(args):
     '''Test and save predictions on the dev and test sets of all three tasks.'''
