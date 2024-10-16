@@ -178,8 +178,8 @@ def train_multitask(args):
     sst_dev_dataloader = DataLoader(sst_dev_data, shuffle=False, batch_size=args.batch_size,
                                     collate_fn=sst_dev_data.collate_fn)
 
-    para_train_data = SentencePairDataset(Subset(para_train_data, torch.arange(0, len(para_train_data) // 10)), args)
-    para_dev_data = SentencePairDataset(Subset(para_dev_data, torch.arange(0, len(para_dev_data) // 10)), args)
+    para_train_data = SentencePairDataset(para_train_data, args)
+    para_dev_data = SentencePairDataset(para_dev_data, args)
     para_train_dataloader = DataLoader(para_train_data, shuffle=True, batch_size=args.batch_size,
                                        collate_fn=para_train_data.collate_fn)
     para_dev_dataloader = DataLoader(para_dev_data, shuffle=False, batch_size=args.batch_size,
@@ -302,14 +302,15 @@ def train_multitask(args):
         train_acc = sst_train_acc + para_train_acc + sts_train_corr
         dev_acc = sst_dev_acc + para_dev_acc + sts_dev_corr
 
+        if dev_acc > best_dev_acc:
+            best_dev_acc = dev_acc
+            save_model(model, optimizer, args, config, args.filepath)
+
         print(f"Epoch {epoch}, sst: train loss :: {sst_train_loss :.3f}, train acc :: {sst_train_acc :.3f}, dev acc :: {sst_dev_acc :.3f}")
         print(f"Epoch {epoch}, para: train loss :: {para_train_loss :.3f}, train acc :: {para_train_acc :.3f}, dev acc :: {para_dev_acc :.3f}")
         print(f"Epoch {epoch}, sts: train loss :: {sts_train_loss :.3f}, train corr :: {sts_train_corr :.3f}, dev corr :: {sts_dev_corr :.3f}")
         print(f"Epoch {epoch}, multi-task: train loss :: {train_loss :.3f}, train corr :: {train_acc :.3f}, dev corr :: {dev_acc :.3f}")
 
-        if dev_acc > best_dev_acc:
-            best_dev_acc = dev_acc
-            save_model(model, optimizer, args, config, args.filepath)
 
 def test_multitask(args):
     '''Test and save predictions on the dev and test sets of all three tasks.'''
