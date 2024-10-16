@@ -211,12 +211,12 @@ def train_multitask(args):
     # Run for the specified number of epochs.
     for epoch in range(args.epochs):
         model.train()
-        sst_train_loss = 0
-        sst_num_batches = 1
-        para_train_loss = 0
-        para_num_batches = 0
-        sts_train_loss = 0
-        sts_num_batches = 1
+        # sst_train_loss = 0
+        # sst_num_batches = 1
+        # para_train_loss = 0
+        # para_num_batches = 1
+        # sts_train_loss = 0
+        # sts_num_batches = 1
         # for batch in tqdm(sst_train_dataloader, desc=f'train-{epoch}-sst', disable=TQDM_DISABLE):
         #     b_ids, b_mask, b_labels = (batch['token_ids'],
         #                                batch['attention_mask'], batch['labels'])
@@ -235,32 +235,32 @@ def train_multitask(args):
         #     sst_train_loss += loss.item()
         #     sst_num_batches += 1
 
-        for batch in tqdm(para_train_dataloader, desc=f'train-{epoch}-para'):
-            (b_ids1, b_mask1,
-             b_ids2, b_mask2,
-             b_labels) = (batch['token_ids_1'], batch['attention_mask_1'],
-                          batch['token_ids_2'], batch['attention_mask_2'],
-                          batch['labels'])
-            
-            b_ids1 = b_ids1.to(device)
-            b_mask1 = b_mask1.to(device)
-            b_ids2 = b_ids2.to(device)
-            b_mask2 = b_mask2.to(device)
-            b_labels = b_labels.to(device)
+        # for batch in tqdm(para_train_dataloader, desc=f'train-{epoch}-para'):
+        #     (b_ids1, b_mask1,
+        #      b_ids2, b_mask2,
+        #      b_labels) = (batch['token_ids_1'], batch['attention_mask_1'],
+        #                   batch['token_ids_2'], batch['attention_mask_2'],
+        #                   batch['labels'])
+        #     
+        #     b_ids1 = b_ids1.to(device)
+        #     b_mask1 = b_mask1.to(device)
+        #     b_ids2 = b_ids2.to(device)
+        #     b_mask2 = b_mask2.to(device)
+        #     b_labels = b_labels.to(device)
 
-            optimizer.zero_grad()
-            logits = model.predict_paraphrase(b_ids1, b_mask1, b_ids2, b_mask2)
-            loss = F.binary_cross_entropy_with_logits(logits.view(-1), b_labels.view(-1).float())
-            loss.backward()
-            optimizer.step()
+        #     optimizer.zero_grad()
+        #     logits = model.predict_paraphrase(b_ids1, b_mask1, b_ids2, b_mask2)
+        #     loss = F.binary_cross_entropy_with_logits(logits.view(-1), b_labels.view(-1).float())
+        #     loss.backward()
+        #     optimizer.step()
 
-            para_train_loss += loss.item()
-            para_num_batches += 1
+        #     para_train_loss += loss.item()
+        #     para_num_batches += 1
 
-        para_train_loss = para_train_loss / para_num_batches
-        para_train_acc = model_eval_para(para_train_dataloader, model, device)
+        # para_train_loss = para_train_loss / para_num_batches
+        # para_train_acc = model_eval_para(para_train_dataloader, model, device)
         para_dev_acc = model_eval_para(para_dev_dataloader, model, device)
-        print(f"Epoch {epoch}, para: train loss :: {para_train_loss :.3f}, train acc :: {para_train_acc :.3f}, dev acc :: {para_dev_acc :.3f}")
+        print(f"Epoch {epoch}, para from single task eval: dev acc :: {para_dev_acc :.3f}")
 
         # for batch in tqdm(sts_train_dataloader, desc=f'train-{epoch}-sts'):
         #     (b_ids1, b_mask1,
@@ -295,13 +295,13 @@ def train_multitask(args):
         #     model,
         #     device,
         # )
-        # sst_dev_acc, _, _, para_dev_acc, _, _, sts_dev_corr, _, _ = model_eval_multitask(
-        #     sst_dev_dataloader,
-        #     para_dev_dataloader,
-        #     sts_dev_dataloader,
-        #     model,
-        #     device,
-        # )
+        sst_dev_acc, _, _, para_dev_acc, _, _, sts_dev_corr, _, _ = model_eval_multitask(
+            sst_dev_dataloader,
+            para_dev_dataloader,
+            sts_dev_dataloader,
+            model,
+            device,
+        )
 
         # train_loss = sst_train_loss + para_train_loss + sts_train_loss
         # train_acc = sst_train_acc + para_train_acc + sts_train_corr
@@ -313,6 +313,7 @@ def train_multitask(args):
 
         # print(f"Epoch {epoch}, sst: train loss :: {sst_train_loss :.3f}, train acc :: {sst_train_acc :.3f}, dev acc :: {sst_dev_acc :.3f}")
         # print(f"Epoch {epoch}, para: train loss :: {para_train_loss :.3f}, train acc :: {para_train_acc :.3f}, dev acc :: {para_dev_acc :.3f}")
+        print(f"Epoch {epoch}, para from multitask eval: dev acc :: {para_dev_acc :.3f}")
         # print(f"Epoch {epoch}, sts: train loss :: {sts_train_loss :.3f}, train corr :: {sts_train_corr :.3f}, dev corr :: {sts_dev_corr :.3f}")
         # print(f"Epoch {epoch}, multi-task: train loss :: {train_loss :.3f}, train corr :: {train_acc :.3f}, dev corr :: {dev_acc :.3f}")
 
