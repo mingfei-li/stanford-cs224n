@@ -32,7 +32,7 @@ from datasets import (
     load_multitask_data
 )
 
-from evaluation import model_eval_sst, model_eval_multitask, model_eval_test_multitask
+from evaluation import model_eval_sst, model_eval_para, model_eval_multitask, model_eval_test_multitask
 
 
 TQDM_DISABLE=False
@@ -257,6 +257,11 @@ def train_multitask(args):
             para_train_loss += loss.item()
             para_num_batches += 1
 
+        para_train_loss = para_train_loss / para_num_batches
+        para_train_acc = model_eval_para(para_train_dataloader, model, device)
+        para_dev_acc = model_eval_para(para_dev_dataloader, model, device)
+        print(f"Epoch {epoch}, para: train loss :: {para_train_loss :.3f}, train acc :: {para_train_acc :.3f}, dev acc :: {para_dev_acc :.3f}")
+
         # for batch in tqdm(sts_train_dataloader, desc=f'train-{epoch}-sts'):
         #     (b_ids1, b_mask1,
         #      b_ids2, b_mask2,
@@ -279,37 +284,37 @@ def train_multitask(args):
         #     sts_train_loss += loss.item()
         #     sts_num_batches += 1
 
-        sst_train_loss = sst_train_loss / sst_num_batches
-        para_train_loss = para_train_loss / para_num_batches
-        sts_train_loss = sts_train_loss / sts_num_batches
+        # sst_train_loss = sst_train_loss / sst_num_batches
+        # para_train_loss = para_train_loss / para_num_batches
+        # sts_train_loss = sts_train_loss / sts_num_batches
 
-        sst_train_acc, _, _, para_train_acc, _, _, sts_train_corr, _, _ = model_eval_multitask(
-            sst_train_dataloader,
-            para_train_dataloader,
-            sts_train_dataloader,
-            model,
-            device,
-        )
-        sst_dev_acc, _, _, para_dev_acc, _, _, sts_dev_corr, _, _ = model_eval_multitask(
-            sst_dev_dataloader,
-            para_dev_dataloader,
-            sts_dev_dataloader,
-            model,
-            device,
-        )
+        # sst_train_acc, _, _, para_train_acc, _, _, sts_train_corr, _, _ = model_eval_multitask(
+        #     sst_train_dataloader,
+        #     para_train_dataloader,
+        #     sts_train_dataloader,
+        #     model,
+        #     device,
+        # )
+        # sst_dev_acc, _, _, para_dev_acc, _, _, sts_dev_corr, _, _ = model_eval_multitask(
+        #     sst_dev_dataloader,
+        #     para_dev_dataloader,
+        #     sts_dev_dataloader,
+        #     model,
+        #     device,
+        # )
 
-        train_loss = sst_train_loss + para_train_loss + sts_train_loss
-        train_acc = sst_train_acc + para_train_acc + sts_train_corr
-        dev_acc = sst_dev_acc + para_dev_acc + sts_dev_corr
+        # train_loss = sst_train_loss + para_train_loss + sts_train_loss
+        # train_acc = sst_train_acc + para_train_acc + sts_train_corr
+        # dev_acc = sst_dev_acc + para_dev_acc + sts_dev_corr
 
-        if dev_acc > best_dev_acc:
-            best_dev_acc = dev_acc
-            save_model(model, optimizer, args, config, args.filepath)
+        # if dev_acc > best_dev_acc:
+        #     best_dev_acc = dev_acc
+        #     save_model(model, optimizer, args, config, args.filepath)
 
-        print(f"Epoch {epoch}, sst: train loss :: {sst_train_loss :.3f}, train acc :: {sst_train_acc :.3f}, dev acc :: {sst_dev_acc :.3f}")
-        print(f"Epoch {epoch}, para: train loss :: {para_train_loss :.3f}, train acc :: {para_train_acc :.3f}, dev acc :: {para_dev_acc :.3f}")
-        print(f"Epoch {epoch}, sts: train loss :: {sts_train_loss :.3f}, train corr :: {sts_train_corr :.3f}, dev corr :: {sts_dev_corr :.3f}")
-        print(f"Epoch {epoch}, multi-task: train loss :: {train_loss :.3f}, train corr :: {train_acc :.3f}, dev corr :: {dev_acc :.3f}")
+        # print(f"Epoch {epoch}, sst: train loss :: {sst_train_loss :.3f}, train acc :: {sst_train_acc :.3f}, dev acc :: {sst_dev_acc :.3f}")
+        # print(f"Epoch {epoch}, para: train loss :: {para_train_loss :.3f}, train acc :: {para_train_acc :.3f}, dev acc :: {para_dev_acc :.3f}")
+        # print(f"Epoch {epoch}, sts: train loss :: {sts_train_loss :.3f}, train corr :: {sts_train_corr :.3f}, dev corr :: {sts_dev_corr :.3f}")
+        # print(f"Epoch {epoch}, multi-task: train loss :: {train_loss :.3f}, train corr :: {train_acc :.3f}, dev corr :: {dev_acc :.3f}")
 
 
 def test_multitask(args):
