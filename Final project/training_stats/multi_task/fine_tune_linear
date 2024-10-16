@@ -1,0 +1,60 @@
+Loaded 8544 train examples from data/ids-sst-train.csv
+Loaded 283003 train examples from data/quora-train.csv
+Loaded 6040 train examples from data/sts-train.csv
+Loaded 1101 train examples from data/ids-sst-dev.csv
+Loaded 40429 train examples from data/quora-dev.csv
+Loaded 863 train examples from data/sts-dev.csv
+save the model to last-linear-layer-10-0.001-multitask.pt
+Epoch 0, sst: train loss :: 1.577, train acc :: 0.303, dev acc :: 0.294
+Epoch 0, para: train loss :: 0.638, train acc :: 0.630, dev acc :: 0.632
+Epoch 0, sts: train loss :: 2.397, train corr :: 0.193, dev corr :: 0.215
+Epoch 0, multi-task: train loss :: 4.612, train acc/corr :: 1.126, dev acc/corr :: 1.141
+save the model to last-linear-layer-10-0.001-multitask.pt
+Epoch 1, sst: train loss :: 1.533, train acc :: 0.393, dev acc :: 0.369
+Epoch 1, para: train loss :: 0.626, train acc :: 0.674, dev acc :: 0.675
+Epoch 1, sts: train loss :: 2.333, train corr :: 0.240, dev corr :: 0.239
+Epoch 1, multi-task: train loss :: 4.492, train acc/corr :: 1.306, dev acc/corr :: 1.283
+Epoch 2, sst: train loss :: 1.502, train acc :: 0.347, dev acc :: 0.322
+Epoch 2, para: train loss :: 0.623, train acc :: 0.630, dev acc :: 0.632
+Epoch 2, sts: train loss :: 2.297, train corr :: 0.248, dev corr :: 0.241
+Epoch 2, multi-task: train loss :: 4.423, train acc/corr :: 1.225, dev acc/corr :: 1.195
+Epoch 3, sst: train loss :: 1.497, train acc :: 0.277, dev acc :: 0.272
+Epoch 3, para: train loss :: 0.621, train acc :: 0.683, dev acc :: 0.683
+Epoch 3, sts: train loss :: 2.269, train corr :: 0.252, dev corr :: 0.234
+Epoch 3, multi-task: train loss :: 4.388, train acc/corr :: 1.213, dev acc/corr :: 1.188
+Epoch 4, sst: train loss :: 1.493, train acc :: 0.328, dev acc :: 0.311
+Epoch 4, para: train loss :: 0.619, train acc :: 0.656, dev acc :: 0.657
+Epoch 4, sts: train loss :: 2.262, train corr :: 0.213, dev corr :: 0.215
+Epoch 4, multi-task: train loss :: 4.374, train acc/corr :: 1.197, dev acc/corr :: 1.182
+save the model to last-linear-layer-10-0.001-multitask.pt
+Epoch 5, sst: train loss :: 1.491, train acc :: 0.405, dev acc :: 0.375
+Epoch 5, para: train loss :: 0.617, train acc :: 0.683, dev acc :: 0.682
+Epoch 5, sts: train loss :: 2.249, train corr :: 0.268, dev corr :: 0.232
+Epoch 5, multi-task: train loss :: 4.357, train acc/corr :: 1.356, dev acc/corr :: 1.289
+Epoch 6, sst: train loss :: 1.481, train acc :: 0.360, dev acc :: 0.346
+Epoch 6, para: train loss :: 0.616, train acc :: 0.666, dev acc :: 0.667
+Epoch 6, sts: train loss :: 2.230, train corr :: 0.260, dev corr :: 0.252
+Epoch 6, multi-task: train loss :: 4.326, train acc/corr :: 1.287, dev acc/corr :: 1.265
+Epoch 7, sst: train loss :: 1.481, train acc :: 0.357, dev acc :: 0.353
+Epoch 7, para: train loss :: 0.615, train acc :: 0.688, dev acc :: 0.687
+Epoch 7, sts: train loss :: 2.280, train corr :: 0.208, dev corr :: 0.197
+Epoch 7, multi-task: train loss :: 4.375, train acc/corr :: 1.254, dev acc/corr :: 1.238
+Epoch 8, sst: train loss :: 1.478, train acc :: 0.295, dev acc :: 0.307
+Epoch 8, para: train loss :: 0.614, train acc :: 0.693, dev acc :: 0.691
+Epoch 8, sts: train loss :: 2.202, train corr :: 0.272, dev corr :: 0.256
+Epoch 8, multi-task: train loss :: 4.294, train acc/corr :: 1.260, dev acc/corr :: 1.254
+save the model to last-linear-layer-10-0.001-multitask.pt
+Epoch 9, sst: train loss :: 1.473, train acc :: 0.392, dev acc :: 0.393
+Epoch 9, para: train loss :: 0.612, train acc :: 0.687, dev acc :: 0.687
+Epoch 9, sts: train loss :: 2.260, train corr :: 0.142, dev corr :: 0.241
+Epoch 9, multi-task: train loss :: 4.345, train acc/corr :: 1.222, dev acc/corr :: 1.321
+Loaded model to test from last-linear-layer-10-0.001-multitask.pt
+Loaded 2210 test examples from data/ids-sst-test-student.csv
+Loaded 80858 test examples from data/quora-test-student.csv
+Loaded 1725 test examples from data/sts-test-student.csv
+Loaded 1101 dev examples from data/ids-sst-dev.csv
+Loaded 40429 dev examples from data/quora-dev.csv
+Loaded 863 dev examples from data/sts-dev.csv
+dev sentiment acc :: 0.393
+dev paraphrase acc :: 0.687
+dev sts corr :: 0.254

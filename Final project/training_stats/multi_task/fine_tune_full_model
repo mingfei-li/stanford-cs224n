@@ -1,0 +1,63 @@
+Loaded 8544 train examples from data/ids-sst-train.csv
+Loaded 283003 train examples from data/quora-train.csv
+Loaded 6040 train examples from data/sts-train.csv
+Loaded 1101 train examples from data/ids-sst-dev.csv
+Loaded 40429 train examples from data/quora-dev.csv
+Loaded 863 train examples from data/sts-dev.csv
+save the model to full-model-10-1e-05-multitask.pt
+Epoch 0, sst: train loss :: 1.241, train acc :: 0.130, dev acc :: 0.128
+Epoch 0, para: train loss :: 0.458, train acc :: 0.733, dev acc :: 0.722
+Epoch 0, sts: train loss :: 2.188, train corr :: 0.419, dev corr :: 0.359
+Epoch 0, multi-task: train loss :: 3.888, train acc/corr :: 1.282, dev acc/corr :: 1.209
+save the model to full-model-10-1e-05-multitask.pt
+Epoch 1, sst: train loss :: 1.106, train acc :: 0.419, dev acc :: 0.391
+Epoch 1, para: train loss :: 0.353, train acc :: 0.854, dev acc :: 0.804
+Epoch 1, sts: train loss :: 1.963, train corr :: 0.589, dev corr :: 0.397
+Epoch 1, multi-task: train loss :: 3.421, train acc/corr :: 1.862, dev acc/corr :: 1.593
+save the model to full-model-10-1e-05-multitask.pt
+Epoch 2, sst: train loss :: 0.926, train acc :: 0.478, dev acc :: 0.429
+Epoch 2, para: train loss :: 0.280, train acc :: 0.889, dev acc :: 0.828
+Epoch 2, sts: train loss :: 1.659, train corr :: 0.747, dev corr :: 0.441
+Epoch 2, multi-task: train loss :: 2.864, train acc/corr :: 2.114, dev acc/corr :: 1.697
+save the model to full-model-10-1e-05-multitask.pt
+Epoch 3, sst: train loss :: 0.764, train acc :: 0.477, dev acc :: 0.407
+Epoch 3, para: train loss :: 0.222, train acc :: 0.910, dev acc :: 0.837
+Epoch 3, sts: train loss :: 1.276, train corr :: 0.830, dev corr :: 0.468
+Epoch 3, multi-task: train loss :: 2.261, train acc/corr :: 2.216, dev acc/corr :: 1.712
+save the model to full-model-10-1e-05-multitask.pt
+Epoch 4, sst: train loss :: 0.638, train acc :: 0.513, dev acc :: 0.412
+Epoch 4, para: train loss :: 0.176, train acc :: 0.936, dev acc :: 0.845
+Epoch 4, sts: train loss :: 0.965, train corr :: 0.882, dev corr :: 0.467
+Epoch 4, multi-task: train loss :: 1.778, train acc/corr :: 2.331, dev acc/corr :: 1.725
+save the model to full-model-10-1e-05-multitask.pt
+Epoch 5, sst: train loss :: 0.536, train acc :: 0.708, dev acc :: 0.459
+Epoch 5, para: train loss :: 0.142, train acc :: 0.961, dev acc :: 0.857
+Epoch 5, sts: train loss :: 0.768, train corr :: 0.910, dev corr :: 0.481
+Epoch 5, multi-task: train loss :: 1.446, train acc/corr :: 2.578, dev acc/corr :: 1.797
+save the model to full-model-10-1e-05-multitask.pt
+Epoch 6, sst: train loss :: 0.454, train acc :: 0.761, dev acc :: 0.452
+Epoch 6, para: train loss :: 0.117, train acc :: 0.967, dev acc :: 0.857
+Epoch 6, sts: train loss :: 0.624, train corr :: 0.922, dev corr :: 0.505
+Epoch 6, multi-task: train loss :: 1.194, train acc/corr :: 2.651, dev acc/corr :: 1.815
+Epoch 7, sst: train loss :: 0.389, train acc :: 0.730, dev acc :: 0.442
+Epoch 7, para: train loss :: 0.096, train acc :: 0.973, dev acc :: 0.856
+Epoch 7, sts: train loss :: 0.523, train corr :: 0.933, dev corr :: 0.463
+Epoch 7, multi-task: train loss :: 1.008, train acc/corr :: 2.636, dev acc/corr :: 1.761
+Epoch 8, sst: train loss :: 0.325, train acc :: 0.790, dev acc :: 0.452
+Epoch 8, para: train loss :: 0.082, train acc :: 0.984, dev acc :: 0.861
+Epoch 8, sts: train loss :: 0.455, train corr :: 0.944, dev corr :: 0.498
+Epoch 8, multi-task: train loss :: 0.862, train acc/corr :: 2.718, dev acc/corr :: 1.812
+Epoch 9, sst: train loss :: 0.290, train acc :: 0.853, dev acc :: 0.462
+Epoch 9, para: train loss :: 0.070, train acc :: 0.987, dev acc :: 0.859
+Epoch 9, sts: train loss :: 0.387, train corr :: 0.949, dev corr :: 0.467
+Epoch 9, multi-task: train loss :: 0.747, train acc/corr :: 2.789, dev acc/corr :: 1.788
+Loaded model to test from full-model-10-1e-05-multitask.pt
+Loaded 2210 test examples from data/ids-sst-test-student.csv
+Loaded 80858 test examples from data/quora-test-student.csv
+Loaded 1725 test examples from data/sts-test-student.csv
+Loaded 1101 dev examples from data/ids-sst-dev.csv
+Loaded 40429 dev examples from data/quora-dev.csv
+Loaded 863 dev examples from data/sts-dev.csv
+dev sentiment acc :: 0.452
+dev paraphrase acc :: 0.857
+dev sts corr :: 0.507
