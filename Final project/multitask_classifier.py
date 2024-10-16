@@ -178,8 +178,8 @@ def train_multitask(args):
     sst_dev_dataloader = DataLoader(sst_dev_data, shuffle=False, batch_size=args.batch_size,
                                     collate_fn=sst_dev_data.collate_fn)
 
-    para_train_data = SentencePairDataset(Subset(para_train_data, torch.arange(0, 1000)), args)
-    para_dev_data = SentencePairDataset(Subset(para_dev_data, torch.arange(0, 500)), args)
+    para_train_data = SentencePairDataset(Subset(para_train_data, torch.arange(0, len(para_train_data) // 10)), args)
+    para_dev_data = SentencePairDataset(Subset(para_dev_data, torch.arange(0, len(para_dev_data) // 10)), args)
     para_train_dataloader = DataLoader(para_train_data, shuffle=True, batch_size=args.batch_size,
                                        collate_fn=para_train_data.collate_fn)
     para_dev_dataloader = DataLoader(para_dev_data, shuffle=False, batch_size=args.batch_size,
@@ -217,23 +217,23 @@ def train_multitask(args):
         para_num_batches = 0
         sts_train_loss = 0
         sts_num_batches = 0
-        # for batch in tqdm(sst_train_dataloader, desc=f'train-{epoch}-sst', disable=TQDM_DISABLE):
-        #     b_ids, b_mask, b_labels = (batch['token_ids'],
-        #                                batch['attention_mask'], batch['labels'])
+        for batch in tqdm(sst_train_dataloader, desc=f'train-{epoch}-sst', disable=TQDM_DISABLE):
+            b_ids, b_mask, b_labels = (batch['token_ids'],
+                                       batch['attention_mask'], batch['labels'])
 
-        #     b_ids = b_ids.to(device)
-        #     b_mask = b_mask.to(device)
-        #     b_labels = b_labels.to(device)
+            b_ids = b_ids.to(device)
+            b_mask = b_mask.to(device)
+            b_labels = b_labels.to(device)
 
-        #     optimizer.zero_grad()
-        #     logits = model.predict_sentiment(b_ids, b_mask)
-        #     loss = F.cross_entropy(logits, b_labels.view(-1))
+            optimizer.zero_grad()
+            logits = model.predict_sentiment(b_ids, b_mask)
+            loss = F.cross_entropy(logits, b_labels.view(-1))
 
-        #     loss.backward()
-        #     optimizer.step()
+            loss.backward()
+            optimizer.step()
 
-        #     sst_train_loss += loss.item()
-        #     sst_num_batches += 1
+            sst_train_loss += loss.item()
+            sst_num_batches += 1
 
         for batch in tqdm(para_train_dataloader, desc=f'train-{epoch}-para'):
             (b_ids1, b_mask1,
